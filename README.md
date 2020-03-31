@@ -14,7 +14,9 @@ The first reservation on the reservation/waitlist will be automatically added to
 
 ## Demo
 
-Test the app -> [Demo](https://gh0stl0nely-restaurant-reservation-web-app.glitch.me/)
+Test the app -> [Demo](https://gh0stl0nely-restaurant-reservation-web-app.glitch.me/) 
+
+Note: May take a couple of seconds to load
 
 ## GIF demonstration 
 
