@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Reservation</title>
+</head>
+
+<body>
+    <h1>Reservation</h1>
+
+    <br>
+    <div style="text-align: center;">
+        <span class="clickable" id="home">Home</span>
+    </div>
+
+    <br>
+    <div class="row">
+        <% for( let index = 0; index < waitlist.length; index++ ) { %>
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <h4>Number <%= index + 1%></h4>
+                    <span class="card-title"><%= waitlist[index].fName %>
+                        <span><%= waitlist[index].lName %></span></span>
+                    <p>Email: <%= waitlist[index].email %> </p>
+                    <p>Phone number: <%= waitlist[index].phone %> </p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#home").on('click', function () {
+                $.get('/', function () {
+                    location.href = "/"
+                })
+            });
+
+        })
+    </script>
+</body>
+
+</html>

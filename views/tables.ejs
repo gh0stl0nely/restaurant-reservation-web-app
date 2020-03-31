@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Tables</title>
+</head>
+
+<body>
+    <h1>View Occupied Tables</h1>
+    <br>
+    <div style="text-align: center;">
+        <span class="clickable" id="home">Home</span>
+    </div>
+
+    <br>
+
+    <div class="row">
+
+        <% for( let index = 0; index < tables.length; index++ ) { %>
+            <div class="col s12 m6">
+                <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                        <h3>Table <%= index + 1%></h3>
+                        <span class="card-title" id="fName"><%= tables[index].fName %> <span id="lName"><%= tables[index].lName %></span></span>
+                        <p>Email: <span id="email"><%= tables[index].email %></span> </p>
+                        <p>Phone number: <span id="phone"><%= tables[index].phone %></span> </p>
+                        <button id="remove" class="btn waves-effect waves-light">
+                                Remove table
+                        </button>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#home").on('click', function () {
+                $.get('/', function () {
+                    location.href = "/"
+                })
+            });
+
+            $('button').on('click', function () {
+                let siblings = $(this).siblings()
+                const fName = siblings[1].firstChild.textContent
+                const lName = siblings[1].lastChild.innerHTML
+                const email = siblings[2].lastElementChild.innerHTML 
+                const phone = siblings[3].lastElementChild.innerHTML 
+                
+                const data = {
+                    fName,
+                    lName,
+                    email,
+                    phone
+                }  
+
+                console.log(data)
+                console.log(siblings[1].firstElementChild)
+                const stringifiedData = JSON.stringify(data)
+
+                $.ajax({
+                    url: '/deleteTable',
+                    type: 'DELETE',
+                    contentType: 'application/json',
+                    data: stringifiedData,
+                    dataType: "json"
+                }).then(res => {
+                    console.log(res)
+                    $(this).parent().parent().parent().remove()
+                })
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>
