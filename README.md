@@ -36,6 +36,7 @@ Test the app -> [Demo](https://gh0stl0nely-restaurant-reservation-web-app.glitch
 * Express Middleware
 * GET/POST/DELETE Requests in Express
 * Routing and Server
+* Writing RESTful API
 
 ## Author
 
