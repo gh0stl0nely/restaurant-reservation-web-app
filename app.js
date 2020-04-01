@@ -4,6 +4,7 @@ const path = require('path')
 const middleware = require('./middleware.js')// -> Maybe put them inside another folder would be better
 
 app.set('view engine', 'ejs')
+app.set('port', process.env.PORT || 3000)
 app.use(express.json()) // => This will parse incoming input with Content-type: application/json
 app.use(express.static('public'))
 
@@ -69,4 +70,4 @@ app.delete('/deleteTable', middleware.updateDatabase, (req, res) => {
 
 // Listening to Port 3000
 
-app.listen(3000)
+app.listen(app.get('port'))
